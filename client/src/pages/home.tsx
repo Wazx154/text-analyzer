@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import logoUrl from "@assets/WhatsApp_Image_2025-12-21_at_2.25.56_PM_1766327688738.jpeg";
+import logoUrl from "@assets/generated_images/voice_of_trainee_arabic_logo.png";
 import { ArrowRight } from "lucide-react";
 
 export default function Home() {
@@ -19,13 +19,11 @@ export default function Home() {
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             className="relative z-10"
           >
-            <div className="w-56 h-48 rounded-3xl neu-card flex items-center justify-center shadow-2xl overflow-hidden">
-              <img
-                src={logoUrl}
-                alt="منصة صوت المتدرب"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <img
+              src={logoUrl}
+              alt="منصة صوت المتدرب"
+              className="w-64 h-64 object-contain drop-shadow-2xl"
+            />
           </motion.div>
         </div>
 
