@@ -13,33 +13,17 @@ export default function Home() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative w-full flex justify-center"
       >
-        <div className="glow-effect">
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="relative z-10"
-          >
-            <img
-              src={logoUrl}
-              alt="منصة صوت المتدرب"
-              className="w-64 h-64 object-contain drop-shadow-2xl"
-            />
-          </motion.div>
-        </div>
-
-        {/* Decorative circles */}
         <motion.div
-          className="absolute w-96 h-96 rounded-full border-2 border-primary/10"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          style={{ top: "50%", left: "50%", marginTop: "-192px", marginLeft: "-192px" }}
-        />
-        <motion.div
-          className="absolute w-72 h-72 rounded-full border-2 border-primary/5"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          style={{ top: "50%", left: "50%", marginTop: "-144px", marginLeft: "-144px" }}
-        />
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="relative z-10"
+        >
+          <img
+            src={logoUrl}
+            alt="منصة صوت المتدرب"
+            className="w-64 h-64 object-contain drop-shadow-2xl"
+          />
+        </motion.div>
       </motion.div>
 
       {/* Content Section */}
