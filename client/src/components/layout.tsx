@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Home, FilePlus, Search, LayoutDashboard, Phone } from "lucide-react";
-import logoUrl from "@assets/WhatsApp_Image_2025-12-21_at_2.25.56_PM_1766327688738.jpeg";
+import logoUrl from "@assets/photo_2025-12-21_16-35-07_1766331712766.jpg";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
