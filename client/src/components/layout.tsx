@@ -15,32 +15,32 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
-      <nav className="sticky top-0 z-50 px-4 py-3 bg-background/80 backdrop-blur-md">
-        <div className="max-w-4xl mx-auto neu-flat rounded-full px-6 py-3 flex items-center justify-between overflow-x-auto">
-          <div className="flex items-center gap-3 font-bold text-primary shrink-0 ml-4">
+      <nav className="sticky top-0 z-50 px-4 py-3 bg-white/70 backdrop-blur-xl border-b border-white/30">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3 font-bold text-primary shrink-0">
             <img 
               src={logoUrl} 
               alt="صوت المتدرب" 
-              className="h-10 w-auto object-contain"
+              className="h-12 w-auto object-contain"
             />
             <span className="hidden sm:inline text-lg">صوت المتدرب</span>
-          </div>
+          </Link>
 
-          <div className="flex items-center gap-2 sm:gap-4">
+          <div className="flex items-center gap-1 sm:gap-2">
             {navItems.map((item) => {
               const isActive = location === item.href;
               return (
-                <Link key={item.href} href={item.href}>
-                  <a
-                    className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl transition-all duration-300 text-sm font-medium whitespace-nowrap
-                    ${isActive 
-                      ? "text-primary shadow-[inset_3px_3px_6px_#bec3c9,inset_-3px_-3px_6px_#ffffff]" 
-                      : "text-muted-foreground hover:text-primary hover:shadow-[3px_3px_6px_#bec3c9,-3px_-3px_6px_#ffffff]"
-                    }`}
-                  >
-                    <item.icon className="w-4 h-4" />
-                    <span className="hidden sm:inline">{item.label}</span>
-                  </a>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl transition-all duration-300 text-sm font-medium whitespace-nowrap
+                  ${isActive 
+                    ? "text-primary bg-primary/10 shadow-md" 
+                    : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                  }`}
+                >
+                  <item.icon className="w-4 h-4" />
+                  <span className="hidden sm:inline text-xs sm:text-sm">{item.label}</span>
                 </Link>
               );
             })}
