@@ -5,13 +5,13 @@ import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center text-center space-y-16 py-20">
-      {/* Logo Section */}
+    <div className="flex flex-col items-center text-center space-y-10 py-12 px-4">
+      {/* Logo Section - Large at Top */}
       <motion.div
         initial={{ opacity: 0, scale: 0.5, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative w-full flex justify-center"
+        className="relative w-full flex justify-center mb-4"
       >
         <motion.div
           animate={{ y: [0, -8, 0] }}
@@ -21,7 +21,7 @@ export default function Home() {
           <img
             src={logoUrl}
             alt="منصة صوت المتدرب"
-            className="w-64 h-64 object-contain drop-shadow-2xl"
+            className="w-80 h-80 object-contain drop-shadow-2xl"
           />
         </motion.div>
       </motion.div>
@@ -31,17 +31,17 @@ export default function Home() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className="space-y-4 max-w-3xl px-4"
+        className="space-y-3 max-w-3xl"
       >
         <div className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold">
           🚀 منصة عصرية وموثوقة
         </div>
-        <h1 className="text-5xl md:text-7xl font-black leading-tight">
+        <h1 className="text-4xl md:text-6xl font-black leading-tight">
           <span className="gradient-text">صوت المتدرب</span>
           <br/>
-          <span className="text-foreground text-4xl md:text-5xl font-bold">يستحق أن يُسمع</span>
+          <span className="text-foreground text-3xl md:text-4xl font-bold">يستحق أن يُسمع</span>
         </h1>
-        <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
           منصتك الموحدة لتقديم الاقتراحات والشكايات بكل سهولة وشفافية. 
           نحن هنا لنسمع صوتك ونعمل معاً لتحسين بيئة التكوين والتطور المستمر.
         </p>
@@ -52,11 +52,11 @@ export default function Home() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}
-        className="flex flex-col sm:flex-row gap-6 w-full max-w-md"
+        className="flex flex-col sm:flex-row gap-5 w-full max-w-md mt-2"
       >
         <Link href="/report" className="flex-1">
           <button
-            className="neu-btn-primary w-full rounded-2xl text-lg flex items-center justify-center gap-2 hover:scale-105 transition-transform"
+            className="neu-btn-primary w-full rounded-2xl text-lg flex items-center justify-center gap-2 hover:scale-105 transition-transform py-3"
           >
             <span>تقديم شكاية جديدة</span>
             <ArrowRight size={20} />
@@ -65,7 +65,7 @@ export default function Home() {
 
         <Link href="/track" className="flex-1">
           <button
-            className="neu-btn w-full rounded-2xl text-lg font-bold hover:scale-105 transition-transform"
+            className="neu-btn w-full rounded-2xl text-lg font-bold hover:scale-105 transition-transform py-3"
           >
             تتبع الشكايات
           </button>
@@ -77,7 +77,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.7 }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-12"
+        className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-8"
       >
         {[
           {
