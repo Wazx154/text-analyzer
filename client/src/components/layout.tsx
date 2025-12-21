@@ -1,5 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Home, FilePlus, Search, LayoutDashboard, Phone } from "lucide-react";
+import logoUrl from "@assets/WhatsApp_Image_2025-12-21_at_2.25.56_PM_1766327688738.jpeg";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -16,11 +17,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <nav className="sticky top-0 z-50 px-4 py-3 bg-background/80 backdrop-blur-md">
         <div className="max-w-4xl mx-auto neu-flat rounded-full px-6 py-3 flex items-center justify-between overflow-x-auto">
-          <div className="flex items-center gap-2 font-bold text-primary shrink-0 ml-4">
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white shadow-lg">
-              <span className="text-lg">ص</span>
-            </div>
-            <span className="hidden sm:inline">صوت المتدرب</span>
+          <div className="flex items-center gap-3 font-bold text-primary shrink-0 ml-4">
+            <img 
+              src={logoUrl} 
+              alt="صوت المتدرب" 
+              className="h-10 w-auto object-contain"
+            />
+            <span className="hidden sm:inline text-lg">صوت المتدرب</span>
           </div>
 
           <div className="flex items-center gap-2 sm:gap-4">
