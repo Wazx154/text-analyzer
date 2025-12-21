@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import logoUrl from "@assets/photo_2025-12-21_16-35-07_1766331712766.jpg";
+import logoUrl from "@assets/photo_2025-12-21_16-35-07-Photoroom_1766332295101.png";
 import { ArrowRight } from "lucide-react";
 
 export default function Home() {
