@@ -19,13 +19,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-background text-foreground flex">
       {/* Sidebar */}
       <aside className="fixed right-0 top-0 h-screen w-56 bg-gradient-to-b from-white/90 to-white/70 backdrop-blur-2xl border-l border-white/40 shadow-2xl flex flex-col items-center justify-start gap-0 z-50 py-6 overflow-y-auto">
-        {/* Logo Section with Badge */}
-        <Link href="/" className="flex items-center justify-center mb-8 relative group">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-600/20 rounded-full blur-xl scale-125 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        {/* Logo Section */}
+        <Link href="/" className="flex items-center justify-center mb-8">
           <img 
             src={logoUrl} 
             alt="صوت المتدرب" 
-            className="w-40 h-40 object-contain hover:scale-110 transition-all duration-300 drop-shadow-xl relative z-10"
+            className="w-40 h-40 object-contain hover:scale-110 transition-all duration-300 drop-shadow-xl"
             title="صوت المتدرب"
           />
         </Link>
