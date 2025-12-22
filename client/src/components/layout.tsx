@@ -20,11 +20,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       {/* Sidebar - Left */}
       <aside className="fixed right-0 top-0 h-screen w-20 bg-white/80 backdrop-blur-xl border-l border-white/30 flex flex-col items-center justify-center gap-4 z-50 py-8">
         {/* Logo */}
-        <Link href="/" className="flex items-center justify-center mb-8">
+        <Link href="/" className="flex items-center justify-center mb-6">
           <img 
             src={logoUrl} 
             alt="صوت المتدرب" 
-            className="w-16 h-16 object-contain hover:scale-110 transition-transform"
+            className="w-12 h-12 object-contain hover:scale-110 transition-transform"
             title="صوت المتدرب"
           />
         </Link>
@@ -52,9 +52,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   <item.icon className="w-6 h-6" />
                 </Link>
 
-                {/* Tooltip */}
-                <div className={`absolute right-24 top-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-purple-600 text-white px-4 py-2 rounded-xl whitespace-nowrap font-medium shadow-lg transition-all duration-300 pointer-events-none
-                  ${hoveredNav === item.href || isActive ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+                {/* Tooltip - Show only on hover or active */}
+                <div className={`absolute right-24 top-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-purple-600 text-white px-4 py-2 rounded-xl whitespace-nowrap font-medium shadow-lg transition-all duration-200 pointer-events-none
+                  ${hoveredNav === item.href ? "opacity-100 visible translate-x-0" : "opacity-0 invisible translate-x-2"}`}>
                   {item.label}
                   <div className="absolute -right-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-gradient-to-r from-primary to-purple-600 rotate-45"></div>
                 </div>
