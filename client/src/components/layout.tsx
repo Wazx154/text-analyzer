@@ -20,11 +20,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       {/* Sidebar - Left */}
       <aside className="fixed right-0 top-0 h-screen w-20 bg-white/80 backdrop-blur-xl border-l border-white/30 flex flex-col items-center justify-center gap-4 z-50 py-8">
         {/* Logo */}
-        <Link href="/" className="flex items-center justify-center mb-6">
+        <Link href="/" className="flex items-center justify-center mb-8">
           <img 
             src={logoUrl} 
             alt="صوت المتدرب" 
-            className="w-12 h-12 object-contain hover:scale-110 transition-transform"
+            className="w-20 h-20 object-contain hover:scale-110 transition-transform drop-shadow-lg"
             title="صوت المتدرب"
           />
         </Link>
