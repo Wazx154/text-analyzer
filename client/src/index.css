@@ -44,6 +44,24 @@
 }
 
 @layer utilities {
+  /* Sidebar Styles */
+  .sidebar-item {
+    @apply p-3 rounded-2xl transition-all duration-300 flex items-center justify-center;
+  }
+
+  .sidebar-item-active {
+    @apply text-white bg-gradient-to-br from-primary to-purple-600 shadow-lg scale-110;
+  }
+
+  .sidebar-item-inactive {
+    @apply text-muted-foreground hover:text-primary hover:bg-primary/10;
+  }
+
+  /* Tooltip Styles */
+  .tooltip {
+    @apply absolute right-24 top-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-purple-600 text-white px-4 py-2 rounded-xl whitespace-nowrap font-medium shadow-lg transition-all duration-300 pointer-events-none;
+  }
+
   .neu-flat {
     background: white;
     box-shadow: var(--shadow-neumorphic);

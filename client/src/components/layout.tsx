@@ -1,60 +1,79 @@
 import { Link, useLocation } from "wouter";
 import { Home, FilePlus, Search, LayoutDashboard, Phone } from "lucide-react";
 import logoUrl from "@assets/photo_2025-12-21_16-35-07-Photoroom_1766332295101.png";
+import { useState } from "react";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
+  const [hoveredNav, setHoveredNav] = useState<string | null>(null);
 
   const navItems = [
     { href: "/", label: "الرئيسية", icon: Home },
     { href: "/report", label: "تقديم مشكل", icon: FilePlus },
-    { href: "/track", label: "تتبع", icon: Search },
-    { href: "/dashboard", label: "الشكايات", icon: LayoutDashboard },
+    { href: "/track", label: "تتبع الشكايات", icon: Search },
+    { href: "/dashboard", label: "لوحة الشكايات", icon: LayoutDashboard },
     { href: "/contact", label: "اتصل بنا", icon: Phone },
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
-      <nav className="sticky top-0 z-50 px-4 py-3 bg-white/70 backdrop-blur-xl border-b border-white/30">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 font-bold text-primary shrink-0">
-            <img 
-              src={logoUrl} 
-              alt="صوت المتدرب" 
-              className="h-12 w-auto object-contain"
-            />
-            <span className="hidden sm:inline text-lg">صوت المتدرب</span>
-          </Link>
+    <div className="min-h-screen bg-background text-foreground flex">
+      {/* Sidebar - Left */}
+      <aside className="fixed right-0 top-0 h-screen w-20 bg-white/80 backdrop-blur-xl border-l border-white/30 flex flex-col items-center justify-center gap-4 z-50 py-8">
+        {/* Logo */}
+        <Link href="/" className="flex items-center justify-center mb-8">
+          <img 
+            src={logoUrl} 
+            alt="صوت المتدرب" 
+            className="w-16 h-16 object-contain hover:scale-110 transition-transform"
+            title="صوت المتدرب"
+          />
+        </Link>
 
-          <div className="flex items-center gap-1 sm:gap-2">
-            {navItems.map((item) => {
-              const isActive = location === item.href;
-              return (
+        {/* Divider */}
+        <div className="w-12 h-px bg-primary/20 my-2"></div>
+
+        {/* Navigation Items */}
+        <nav className="flex flex-col gap-4">
+          {navItems.map((item) => {
+            const isActive = location === item.href;
+            return (
+              <div key={item.href} className="relative group">
                 <Link
-                  key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl transition-all duration-300 text-sm font-medium whitespace-nowrap
+                  onMouseEnter={() => setHoveredNav(item.href)}
+                  onMouseLeave={() => setHoveredNav(null)}
+                  className={`relative p-3 rounded-2xl transition-all duration-300 flex items-center justify-center
                   ${isActive 
-                    ? "text-primary bg-primary/10 shadow-md" 
-                    : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                    ? "text-white bg-gradient-to-br from-primary to-purple-600 shadow-lg scale-110" 
+                    : "text-muted-foreground hover:text-primary hover:bg-primary/10"
                   }`}
+                  title={item.label}
                 >
-                  <item.icon className="w-4 h-4" />
-                  <span className="hidden sm:inline text-xs sm:text-sm">{item.label}</span>
+                  <item.icon className="w-6 h-6" />
                 </Link>
-              );
-            })}
-          </div>
-        </div>
-      </nav>
 
-      <main className="flex-1 w-full max-w-4xl mx-auto p-4 sm:p-6 md:p-8 animate-in fade-in zoom-in-95 duration-500">
-        {children}
-      </main>
+                {/* Tooltip */}
+                <div className={`absolute right-24 top-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-purple-600 text-white px-4 py-2 rounded-xl whitespace-nowrap font-medium shadow-lg transition-all duration-300 pointer-events-none
+                  ${hoveredNav === item.href || isActive ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+                  {item.label}
+                  <div className="absolute -right-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-gradient-to-r from-primary to-purple-600 rotate-45"></div>
+                </div>
+              </div>
+            );
+          })}
+        </nav>
+      </aside>
 
-      <footer className="py-6 text-center text-muted-foreground text-sm">
-        <p>© 2025 منصة صوت المتدرب - جميع الحقوق محفوظة</p>
-      </footer>
+      {/* Main Content */}
+      <div className="flex-1 mr-20 flex flex-col min-h-screen">
+        <main className="flex-1 w-full max-w-6xl mx-auto p-4 sm:p-6 md:p-8 animate-in fade-in zoom-in-95 duration-500">
+          {children}
+        </main>
+
+        <footer className="py-6 text-center text-muted-foreground text-sm border-t border-white/20">
+          <p>© 2025 منصة صوت المتدرب - جميع الحقوق محفوظة</p>
+        </footer>
+      </div>
     </div>
   );
 }
