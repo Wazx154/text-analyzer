@@ -18,13 +18,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-background text-foreground flex">
       {/* Sidebar - Left */}
-      <aside className="fixed right-0 top-0 h-screen w-20 bg-white/80 backdrop-blur-xl border-l border-white/30 flex flex-col items-center justify-center gap-4 z-50 py-8">
+      <aside className="fixed right-0 top-0 h-screen w-48 bg-white/80 backdrop-blur-xl border-l border-white/30 flex flex-col items-center justify-start gap-0 z-50 py-12 overflow-y-auto">
         {/* Logo */}
-        <Link href="/" className="flex items-center justify-center mb-10">
+        <Link href="/" className="flex items-center justify-center mb-12">
           <img 
             src={logoUrl} 
             alt="صوت المتدرب" 
-            className="w-32 h-32 object-contain hover:scale-105 transition-transform drop-shadow-2xl"
+            className="w-40 h-40 object-contain hover:scale-105 transition-transform drop-shadow-2xl"
             title="صوت المتدرب"
           />
         </Link>
@@ -65,7 +65,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 mr-20 flex flex-col min-h-screen">
+      <div className="flex-1 mr-48 flex flex-col min-h-screen">
         <main className="flex-1 w-full max-w-6xl mx-auto p-4 sm:p-6 md:p-8 animate-in fade-in zoom-in-95 duration-500">
           {children}
         </main>
