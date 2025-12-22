@@ -3,11 +3,14 @@ import { motion } from "framer-motion";
 import logoUrl from "@assets/photo_2025-12-21_16-35-07-Photoroom_1766332295101.png";
 import { ArrowRight, Users, FileText, Zap } from "lucide-react";
 import { getComplaints } from "@/lib/store";
+import { useLanguage } from "@/lib/language-context";
+import { t } from "@/lib/i18n";
 
 export default function Home() {
   const complaints = getComplaints();
   const resolved = complaints.filter(c => c.status === 'resolved').length;
   const pending = complaints.filter(c => c.status === 'pending').length;
+  const { language } = useLanguage();
 
   return (
     <div className="flex flex-col items-center text-center space-y-12 py-8">
@@ -38,13 +41,13 @@ export default function Home() {
         className="space-y-3 max-w-2xl"
       >
         <div className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-primary/20 to-purple-600/20 text-primary text-sm font-bold">
-          🚀 منصة عصرية وموثوقة
+          🚀 {t("platformDesc", language)}
         </div>
         <h1 className="text-5xl md:text-6xl font-black leading-tight">
-          <span className="gradient-text">صوت المتدرب</span>
+          <span className="gradient-text">{t("mainTitle", language)}</span>
         </h1>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          منصتك الموحدة لتقديم الاقتراحات والشكايات بكل سهولة وشفافية
+          {t("mainDesc", language)}
         </p>
       </motion.div>
 
@@ -58,17 +61,17 @@ export default function Home() {
         <div className="neu-card flex flex-col items-center gap-2 py-6">
           <FileText className="text-primary" size={28} />
           <span className="text-2xl font-bold text-primary">{complaints.length}</span>
-          <span className="text-xs text-muted-foreground">الشكايات الكلية</span>
+          <span className="text-xs text-muted-foreground">{t("totalComplaints", language)}</span>
         </div>
         <div className="neu-card flex flex-col items-center gap-2 py-6">
           <Zap className="text-amber-500" size={28} />
           <span className="text-2xl font-bold text-amber-500">{pending}</span>
-          <span className="text-xs text-muted-foreground">قيد المعالجة</span>
+          <span className="text-xs text-muted-foreground">{t("pending", language)}</span>
         </div>
         <div className="neu-card flex flex-col items-center gap-2 py-6">
           <Users className="text-green-500" size={28} />
           <span className="text-2xl font-bold text-green-500">{resolved}</span>
-          <span className="text-xs text-muted-foreground">تم حلها</span>
+          <span className="text-xs text-muted-foreground">{t("resolved", language)}</span>
         </div>
       </motion.div>
 
@@ -81,13 +84,13 @@ export default function Home() {
       >
         <Link href="/report" className="flex-1">
           <button className="neu-btn-primary w-full rounded-2xl text-lg flex items-center justify-center gap-2 hover:scale-105 transition-transform py-3">
-            <span>تقديم شكاية</span>
+            <span>{t("submitComplaint", language)}</span>
             <ArrowRight size={20} />
           </button>
         </Link>
         <Link href="/track" className="flex-1">
           <button className="neu-btn w-full rounded-2xl text-lg font-bold hover:scale-105 transition-transform py-3">
-            تتبع
+            {t("trackComplaint", language)}
           </button>
         </Link>
       </motion.div>

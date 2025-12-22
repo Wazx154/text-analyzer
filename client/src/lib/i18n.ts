@@ -1,0 +1,65 @@
+export type Language = 'ar' | 'en' | 'fr';
+
+export const translations: Record<Language, Record<string, string>> = {
+  ar: {
+    home: 'الرئيسية',
+    report: 'تقديم مشكل',
+    track: 'تتبع الشكايات',
+    dashboard: 'لوحة الشكايات',
+    contact: 'اتصل بنا',
+    mainMenu: 'القائمة الرئيسية',
+    platformName: 'صوت المتدرب',
+    platformDesc: 'منصة آمنة وموثوقة',
+    submitComplaint: 'تقديم شكاية',
+    trackComplaint: 'تتبع',
+    mainTitle: 'صوت المتدرب',
+    mainDesc: 'يستحق أن يُسمع',
+    totalComplaints: 'الشكايات الكلية',
+    pending: 'قيد المعالجة',
+    resolved: 'تم حلها',
+    language: 'اللغة',
+    darkMode: 'الوضع المظلم',
+  },
+  en: {
+    home: 'Home',
+    report: 'Submit Complaint',
+    track: 'Track',
+    dashboard: 'Dashboard',
+    contact: 'Contact',
+    mainMenu: 'Main Menu',
+    platformName: 'Voice of the Trainee',
+    platformDesc: 'Safe & Trusted Platform',
+    submitComplaint: 'Submit Complaint',
+    trackComplaint: 'Track',
+    mainTitle: 'Voice of the Trainee',
+    mainDesc: 'Your Voice Matters',
+    totalComplaints: 'Total Complaints',
+    pending: 'Pending',
+    resolved: 'Resolved',
+    language: 'Language',
+    darkMode: 'Dark Mode',
+  },
+  fr: {
+    home: 'Accueil',
+    report: 'Soumettre une plainte',
+    track: 'Suivi',
+    dashboard: 'Tableau de bord',
+    contact: 'Contact',
+    mainMenu: 'Menu Principal',
+    platformName: 'Voix du Stagiaire',
+    platformDesc: 'Plateforme Sécurisée et Fiable',
+    submitComplaint: 'Soumettre une plainte',
+    trackComplaint: 'Suivi',
+    mainTitle: 'Voix du Stagiaire',
+    mainDesc: 'Votre Voix Compte',
+    totalComplaints: 'Plaintes Totales',
+    pending: 'En cours',
+    resolved: 'Résolue',
+    language: 'Langue',
+    darkMode: 'Mode Sombre',
+  }
+};
+
+export function t(key: string, language: Language): string {
+  return translations[language][key] || key;
+}

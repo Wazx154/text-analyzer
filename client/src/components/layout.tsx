@@ -1,24 +1,42 @@
 import { Link, useLocation } from "wouter";
-import { Home, FilePlus, Search, LayoutDashboard, Phone } from "lucide-react";
+import { Home, FilePlus, Search, LayoutDashboard, Phone, Globe, Moon, Sun } from "lucide-react";
 import logoUrl from "@assets/photo_2025-12-21_16-35-07-Photoroom_1766332295101.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLanguage } from "@/lib/language-context";
+import { t } from "@/lib/i18n";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
+  const [isDark, setIsDark] = useState(false);
+  const { language, setLanguage } = useLanguage();
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    const dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setIsDark(dark);
+    document.documentElement.classList.toggle('dark', dark);
+  }, []);
+
+  const toggleTheme = () => {
+    const newDark = !isDark;
+    setIsDark(newDark);
+    localStorage.setItem('theme', newDark ? 'dark' : 'light');
+    document.documentElement.classList.toggle('dark', newDark);
+  };
 
   const navItems = [
-    { href: "/", label: "الرئيسية", icon: Home },
-    { href: "/report", label: "تقديم مشكل", icon: FilePlus },
-    { href: "/track", label: "تتبع الشكايات", icon: Search },
-    { href: "/dashboard", label: "لوحة الشكايات", icon: LayoutDashboard },
-    { href: "/contact", label: "اتصل بنا", icon: Phone },
+    { href: "/", label: t("home", language), icon: Home },
+    { href: "/report", label: t("report", language), icon: FilePlus },
+    { href: "/track", label: t("track", language), icon: Search },
+    { href: "/dashboard", label: t("dashboard", language), icon: LayoutDashboard },
+    { href: "/contact", label: t("contact", language), icon: Phone },
   ];
 
   return (
     <div className="min-h-screen bg-background text-foreground flex">
       {/* Sidebar */}
-      <aside className="fixed right-0 top-0 h-screen w-56 bg-gradient-to-b from-white/90 to-white/70 backdrop-blur-2xl border-l border-white/40 shadow-2xl flex flex-col items-center justify-start gap-0 z-50 py-6 overflow-y-auto">
+      <aside className="fixed right-0 top-0 h-screen w-56 bg-gradient-to-b from-white/90 to-white/70 dark:from-gray-900/90 dark:to-gray-800/70 backdrop-blur-2xl border-l border-white/40 dark:border-gray-700/40 shadow-2xl flex flex-col items-center justify-start gap-0 z-50 py-6 overflow-y-auto transition-colors duration-300">
         {/* Logo Section */}
         <Link href="/" className="flex items-center justify-center mb-8">
           <img 
@@ -33,7 +51,36 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <div className="w-16 h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent my-4 rounded-full"></div>
 
         {/* Title */}
-        <h2 className="text-sm font-bold text-primary text-center px-4 mb-6">القائمة الرئيسية</h2>
+        <h2 className="text-sm font-bold text-primary text-center px-4 mb-6">{t("mainMenu", language)}</h2>
+
+        {/* Language & Theme Toggles */}
+        <div className="w-full px-4 mb-6 flex flex-col gap-3">
+          {/* Language Selector */}
+          <div className="flex items-center justify-center gap-1 p-2 rounded-xl bg-primary/10">
+            {(['ar', 'en', 'fr'] as const).map(lang => (
+              <button
+                key={lang}
+                onClick={() => setLanguage(lang)}
+                className={`px-2 py-1 rounded-lg text-xs font-bold transition-all ${
+                  language === lang 
+                    ? 'bg-primary text-white' 
+                    : 'text-muted-foreground hover:text-primary'
+                }`}
+              >
+                {lang.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="w-full flex items-center justify-center gap-2 p-3 rounded-xl bg-primary/10 hover:bg-primary/20 text-primary transition-all"
+          >
+            {isDark ? <Sun size={16} /> : <Moon size={16} />}
+            <span className="text-xs font-bold">{isDark ? '☀️' : '🌙'}</span>
+          </button>
+        </div>
 
         {/* Navigation Items */}
         <nav className="flex flex-col gap-3 w-full px-4 flex-1">
@@ -68,9 +115,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </nav>
 
         {/* Footer Info */}
-        <div className="w-full px-4 py-4 mt-auto border-t border-white/20">
-          <p className="text-xs text-muted-foreground text-center">منصة آمنة وموثوقة</p>
-          <p className="text-xs text-primary font-bold text-center mt-1">صوت المتدرب</p>
+        <div className="w-full px-4 py-4 mt-auto border-t border-white/20 dark:border-gray-700">
+          <p className="text-xs text-muted-foreground text-center">{t("platformDesc", language)}</p>
+          <p className="text-xs text-primary font-bold text-center mt-1">{t("platformName", language)}</p>
         </div>
       </aside>
 

@@ -41,6 +41,21 @@
     background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
     @apply text-foreground font-sans min-h-screen selection:bg-primary/20;
   }
+  
+  /* Dark Mode */
+  :root.dark {
+    color-scheme: dark;
+    --color-background: #1a1f36;
+    --color-foreground: #f5f7fa;
+    --color-muted-foreground: #9baacf;
+    --color-card: #2d3447;
+    --color-border: #3d4452;
+    --color-input: #2d3447;
+  }
+  
+  :root.dark body {
+    background: linear-gradient(135deg, #1a1f36 0%, #2d3447 100%);
+  }
 }
 
 @layer utilities {
@@ -66,12 +81,14 @@
     background: white;
     box-shadow: var(--shadow-neumorphic);
     border-radius: var(--radius-xl);
+    @apply dark:bg-gray-800;
   }
   
   .neu-pressed {
     background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
     box-shadow: var(--shadow-neumorphic-inset);
     border-radius: var(--radius-xl);
+    @apply dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-900;
   }
 
   .neu-btn {
