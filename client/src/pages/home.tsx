@@ -1,73 +1,93 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import logoUrl from "@assets/photo_2025-12-21_16-35-07-Photoroom_1766332295101.png";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Users, FileText, Zap } from "lucide-react";
+import { getComplaints } from "@/lib/store";
 
 export default function Home() {
+  const complaints = getComplaints();
+  const resolved = complaints.filter(c => c.status === 'resolved').length;
+  const pending = complaints.filter(c => c.status === 'pending').length;
+
   return (
-    <div className="flex flex-col items-center text-center space-y-10 py-12 px-4">
-      {/* Logo Section - Large at Top */}
+    <div className="flex flex-col items-center text-center space-y-12 py-8">
+      {/* Logo Section */}
       <motion.div
         initial={{ opacity: 0, scale: 0.5, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative w-full flex justify-center mb-4"
+        className="relative w-full flex justify-center"
       >
         <motion.div
           animate={{ y: [0, -8, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="relative z-10"
         >
           <img
             src={logoUrl}
             alt="منصة صوت المتدرب"
-            className="w-80 h-80 object-contain drop-shadow-2xl"
+            className="w-64 h-64 object-contain drop-shadow-2xl"
           />
         </motion.div>
       </motion.div>
 
-      {/* Content Section */}
+      {/* Header Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="space-y-3 max-w-2xl"
+      >
+        <div className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-primary/20 to-purple-600/20 text-primary text-sm font-bold">
+          🚀 منصة عصرية وموثوقة
+        </div>
+        <h1 className="text-5xl md:text-6xl font-black leading-tight">
+          <span className="gradient-text">صوت المتدرب</span>
+        </h1>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          منصتك الموحدة لتقديم الاقتراحات والشكايات بكل سهولة وشفافية
+        </p>
+      </motion.div>
+
+      {/* Stats Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className="space-y-3 max-w-3xl"
+        className="grid grid-cols-3 gap-4 w-full max-w-2xl"
       >
-        <div className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold">
-          🚀 منصة عصرية وموثوقة
+        <div className="neu-card flex flex-col items-center gap-2 py-6">
+          <FileText className="text-primary" size={28} />
+          <span className="text-2xl font-bold text-primary">{complaints.length}</span>
+          <span className="text-xs text-muted-foreground">الشكايات الكلية</span>
         </div>
-        <h1 className="text-4xl md:text-6xl font-black leading-tight">
-          <span className="gradient-text">صوت المتدرب</span>
-          <br/>
-          <span className="text-foreground text-3xl md:text-4xl font-bold">يستحق أن يُسمع</span>
-        </h1>
-        <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-          منصتك الموحدة لتقديم الاقتراحات والشكايات بكل سهولة وشفافية. 
-          نحن هنا لنسمع صوتك ونعمل معاً لتحسين بيئة التكوين والتطور المستمر.
-        </p>
+        <div className="neu-card flex flex-col items-center gap-2 py-6">
+          <Zap className="text-amber-500" size={28} />
+          <span className="text-2xl font-bold text-amber-500">{pending}</span>
+          <span className="text-xs text-muted-foreground">قيد المعالجة</span>
+        </div>
+        <div className="neu-card flex flex-col items-center gap-2 py-6">
+          <Users className="text-green-500" size={28} />
+          <span className="text-2xl font-bold text-green-500">{resolved}</span>
+          <span className="text-xs text-muted-foreground">تم حلها</span>
+        </div>
       </motion.div>
 
       {/* CTA Buttons */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-        className="flex flex-col sm:flex-row gap-5 w-full max-w-md mt-2"
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="flex flex-col sm:flex-row gap-4 w-full max-w-md"
       >
         <Link href="/report" className="flex-1">
-          <button
-            className="neu-btn-primary w-full rounded-2xl text-lg flex items-center justify-center gap-2 hover:scale-105 transition-transform py-3"
-          >
-            <span>تقديم شكاية جديدة</span>
+          <button className="neu-btn-primary w-full rounded-2xl text-lg flex items-center justify-center gap-2 hover:scale-105 transition-transform py-3">
+            <span>تقديم شكاية</span>
             <ArrowRight size={20} />
           </button>
         </Link>
-
         <Link href="/track" className="flex-1">
-          <button
-            className="neu-btn w-full rounded-2xl text-lg font-bold hover:scale-105 transition-transform py-3"
-          >
-            تتبع الشكايات
+          <button className="neu-btn w-full rounded-2xl text-lg font-bold hover:scale-105 transition-transform py-3">
+            تتبع
           </button>
         </Link>
       </motion.div>
@@ -76,8 +96,8 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.7 }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-8"
+        transition={{ duration: 0.8, delay: 0.5 }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mt-4"
       >
         {[
           {
