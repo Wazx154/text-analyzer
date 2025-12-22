@@ -17,55 +17,66 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex">
-      {/* Sidebar - Left */}
-      <aside className="fixed right-0 top-0 h-screen w-48 bg-white/80 backdrop-blur-xl border-l border-white/30 flex flex-col items-center justify-start gap-0 z-50 py-12 overflow-y-auto">
-        {/* Logo */}
-        <Link href="/" className="flex items-center justify-center mb-12">
+      {/* Sidebar */}
+      <aside className="fixed right-0 top-0 h-screen w-56 bg-gradient-to-b from-white/90 to-white/70 backdrop-blur-2xl border-l border-white/40 shadow-2xl flex flex-col items-center justify-start gap-0 z-50 py-6 overflow-y-auto">
+        {/* Logo Section with Badge */}
+        <Link href="/" className="flex items-center justify-center mb-8 relative group">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-600/20 rounded-full blur-xl scale-125 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           <img 
             src={logoUrl} 
             alt="صوت المتدرب" 
-            className="w-40 h-40 object-contain hover:scale-105 transition-transform drop-shadow-2xl"
+            className="w-40 h-40 object-contain hover:scale-110 transition-all duration-300 drop-shadow-xl relative z-10"
             title="صوت المتدرب"
           />
         </Link>
 
-        {/* Divider */}
-        <div className="w-12 h-px bg-primary/20 my-2"></div>
+        {/* Divider with gradient */}
+        <div className="w-16 h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent my-4 rounded-full"></div>
+
+        {/* Title */}
+        <h2 className="text-sm font-bold text-primary text-center px-4 mb-6">القائمة الرئيسية</h2>
 
         {/* Navigation Items */}
-        <nav className="flex flex-col gap-4">
+        <nav className="flex flex-col gap-3 w-full px-4 flex-1">
           {navItems.map((item) => {
             const isActive = location === item.href;
             return (
-              <div key={item.href} className="relative group">
+              <div key={item.href} className="relative">
                 <Link
                   href={item.href}
                   onMouseEnter={() => setHoveredNav(item.href)}
                   onMouseLeave={() => setHoveredNav(null)}
-                  className={`relative p-3 rounded-2xl transition-all duration-300 flex items-center justify-center
+                  className={`relative w-full p-4 rounded-2xl transition-all duration-300 flex items-center gap-3 group
                   ${isActive 
-                    ? "text-white bg-gradient-to-br from-primary to-purple-600 shadow-lg scale-110" 
-                    : "text-muted-foreground hover:text-primary hover:bg-primary/10"
+                    ? "text-white bg-gradient-to-r from-primary via-primary to-purple-600 shadow-lg scale-105 font-bold" 
+                    : "text-muted-foreground hover:text-primary hover:bg-primary/15"
                   }`}
                   title={item.label}
                 >
-                  <item.icon className="w-6 h-6" />
+                  <item.icon className={`w-5 h-5 transition-all duration-300 ${isActive ? "scale-125" : "group-hover:scale-110"}`} />
+                  <span className="text-sm font-medium text-right flex-1">{item.label}</span>
+                  {isActive && <div className="w-2 h-2 rounded-full bg-white animate-pulse"></div>}
                 </Link>
 
-                {/* Tooltip - Show only on hover or active */}
-                <div className={`absolute right-24 top-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-purple-600 text-white px-4 py-2 rounded-xl whitespace-nowrap font-medium shadow-lg transition-all duration-200 pointer-events-none
+                {/* Tooltip - Show only on hover */}
+                <div className={`absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-purple-600 text-white px-3 py-1 rounded-lg whitespace-nowrap text-xs font-medium shadow-lg transition-all duration-200 pointer-events-none
                   ${hoveredNav === item.href ? "opacity-100 visible translate-x-0" : "opacity-0 invisible translate-x-2"}`}>
                   {item.label}
-                  <div className="absolute -right-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-gradient-to-r from-primary to-purple-600 rotate-45"></div>
                 </div>
               </div>
             );
           })}
         </nav>
+
+        {/* Footer Info */}
+        <div className="w-full px-4 py-4 mt-auto border-t border-white/20">
+          <p className="text-xs text-muted-foreground text-center">منصة آمنة وموثوقة</p>
+          <p className="text-xs text-primary font-bold text-center mt-1">صوت المتدرب</p>
+        </div>
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 mr-48 flex flex-col min-h-screen">
+      <div className="flex-1 mr-56 flex flex-col min-h-screen">
         <main className="flex-1 w-full max-w-6xl mx-auto p-4 sm:p-6 md:p-8 animate-in fade-in zoom-in-95 duration-500">
           {children}
         </main>
