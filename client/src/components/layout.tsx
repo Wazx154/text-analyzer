@@ -36,7 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-background text-foreground flex">
       {/* Sidebar */}
-      <aside className="fixed right-0 top-0 h-screen w-56 bg-gradient-to-b from-white/90 to-white/70 dark:from-gray-900/90 dark:to-gray-800/70 backdrop-blur-2xl border-l border-white/40 dark:border-gray-700/40 shadow-2xl flex flex-col items-center justify-start gap-0 z-50 py-6 overflow-y-auto transition-colors duration-300">
+      <aside className="fixed right-0 top-0 h-screen w-56 bg-gradient-to-b from-white/90 to-white/70 dark:from-slate-800/95 dark:to-slate-900/95 backdrop-blur-2xl border-l border-white/40 dark:border-slate-700/60 shadow-2xl flex flex-col items-center justify-start gap-0 z-50 py-6 overflow-y-auto transition-colors duration-300">
         {/* Logo Section */}
         <Link href="/" className="flex items-center justify-center mb-8">
           <img 
@@ -56,15 +56,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {/* Language & Theme Toggles */}
         <div className="w-full px-4 mb-6 flex flex-col gap-3">
           {/* Language Selector */}
-          <div className="flex items-center justify-center gap-1 p-2 rounded-xl bg-primary/10">
+          <div className="flex items-center justify-center gap-1 p-2 rounded-xl bg-primary/10 dark:bg-primary/20 transition-colors">
             {(['ar', 'en', 'fr'] as const).map(lang => (
               <button
                 key={lang}
                 onClick={() => setLanguage(lang)}
                 className={`px-2 py-1 rounded-lg text-xs font-bold transition-all ${
                   language === lang 
-                    ? 'bg-primary text-white' 
-                    : 'text-muted-foreground hover:text-primary'
+                    ? 'bg-primary text-white shadow-md' 
+                    : 'text-muted-foreground dark:text-slate-300 hover:text-primary dark:hover:text-primary/90'
                 }`}
               >
                 {lang.toUpperCase()}
@@ -75,7 +75,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="w-full flex items-center justify-center gap-2 p-3 rounded-xl bg-primary/10 hover:bg-primary/20 text-primary transition-all"
+            className="w-full flex items-center justify-center gap-2 p-3 rounded-xl bg-primary/10 dark:bg-primary/20 hover:bg-primary/20 dark:hover:bg-primary/30 text-primary transition-all"
           >
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
             <span className="text-xs font-bold">{isDark ? '☀️' : '🌙'}</span>
@@ -115,8 +115,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </nav>
 
         {/* Footer Info */}
-        <div className="w-full px-4 py-4 mt-auto border-t border-white/20 dark:border-gray-700">
-          <p className="text-xs text-muted-foreground text-center">{t("platformDesc", language)}</p>
+        <div className="w-full px-4 py-4 mt-auto border-t border-white/20 dark:border-slate-700/60 transition-colors">
+          <p className="text-xs text-muted-foreground dark:text-slate-300 text-center">{t("platformDesc", language)}</p>
           <p className="text-xs text-primary font-bold text-center mt-1">{t("platformName", language)}</p>
         </div>
       </aside>

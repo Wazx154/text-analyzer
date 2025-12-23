@@ -45,16 +45,28 @@
   /* Dark Mode */
   :root.dark {
     color-scheme: dark;
-    --color-background: #1a1f36;
-    --color-foreground: #f5f7fa;
-    --color-muted-foreground: #9baacf;
-    --color-card: #2d3447;
-    --color-border: #3d4452;
-    --color-input: #2d3447;
+    --color-background: linear-gradient(135deg, #0f1419 0%, #1a1f36 100%);
+    --color-foreground: #e5eaf2;
+    --color-muted: #7c8ba3;
+    --color-muted-foreground: #a0aec0;
+    --color-card: #1a2138;
+    --color-card-foreground: #e5eaf2;
+    --color-border: #2d3a4f;
+    --color-input: #151d2d;
+    --color-primary: #7c6ef5;
+    --color-success: #10b981;
+    --color-error: #ef4444;
+    
+    --shadow-neumorphic: 12px 12px 24px rgba(0,0,0, 0.3), -12px -12px 24px rgba(255,255,255, 0.05);
+    --shadow-neumorphic-sm: 5px 5px 10px rgba(0,0,0, 0.2), -5px -5px 10px rgba(255,255,255, 0.03);
+    --shadow-neumorphic-inset: inset 6px 6px 10px 0 rgba(0,0,0, 0.2), inset -6px -6px 10px 0 rgba(255,255,255, 0.05);
+    --shadow-neumorphic-btn: 6px 6px 12px rgba(0,0,0, 0.25), -6px -6px 12px rgba(255,255,255, 0.03);
+    --shadow-neumorphic-btn-active: inset 4px 4px 8px rgba(0,0,0, 0.3), inset -4px -4px 8px rgba(255,255,255, 0.05);
+    --shadow-lg: 0 20px 40px rgba(0,0,0, 0.5);
   }
   
   :root.dark body {
-    background: linear-gradient(135deg, #1a1f36 0%, #2d3447 100%);
+    background: linear-gradient(135deg, #0f1419 0%, #1a1f36 100%);
   }
 }
 
@@ -81,14 +93,14 @@
     background: white;
     box-shadow: var(--shadow-neumorphic);
     border-radius: var(--radius-xl);
-    @apply dark:bg-gray-800;
+    @apply dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900;
   }
   
   .neu-pressed {
     background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
     box-shadow: var(--shadow-neumorphic-inset);
     border-radius: var(--radius-xl);
-    @apply dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-900;
+    @apply dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-950;
   }
 
   .neu-btn {
@@ -104,6 +116,14 @@
 
   .neu-btn:active {
     box-shadow: var(--shadow-neumorphic-btn-active);
+  }
+
+  :root.dark .neu-btn {
+    @apply bg-gradient-to-br from-slate-800 to-slate-900;
+  }
+
+  :root.dark .neu-btn:hover {
+    @apply from-slate-700 to-slate-800;
   }
   
   .neu-btn-primary {
@@ -123,6 +143,14 @@
     transform: translateY(0);
   }
 
+  :root.dark .neu-btn-primary {
+    box-shadow: 0 10px 25px rgba(109, 93, 252, 0.3), 0 -5px 10px rgba(255,255,255, 0.05);
+  }
+
+  :root.dark .neu-btn-primary:hover {
+    box-shadow: 0 15px 35px rgba(109, 93, 252, 0.4), 0 -5px 10px rgba(255,255,255, 0.08);
+  }
+
   .neu-input {
     @apply w-full px-4 py-3 rounded-xl outline-none transition-all duration-200;
     background: white;
@@ -136,6 +164,14 @@
     box-shadow: var(--shadow-lg), inset 0 0 0 2px rgba(109, 93, 252, 0.1);
   }
 
+  :root.dark .neu-input {
+    @apply bg-slate-900 border-slate-700;
+  }
+
+  :root.dark .neu-input:focus {
+    @apply ring-primary/40 border-primary/50;
+  }
+
   .neu-card {
     @apply p-6 rounded-3xl bg-white;
     box-shadow: var(--shadow-neumorphic);
@@ -143,8 +179,19 @@
     border: 1px solid rgba(255,255,255, 0.8);
   }
 
+  :root.dark .neu-card {
+    @apply bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700;
+  }
+
   .gradient-text {
     background: linear-gradient(135deg, #6d5dfc 0%, #4facfe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  :root.dark .gradient-text {
+    background: linear-gradient(135deg, #8b7dff 0%, #7c9ff5 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
