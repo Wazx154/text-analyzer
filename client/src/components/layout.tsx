@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Home, FilePlus, Search, LayoutDashboard, Phone, Globe, Moon, Sun, Menu, X } from "lucide-react";
+import { Home, FilePlus, Search, LayoutDashboard, Phone, Globe, Moon, Sun, Menu, X, ChevronDown } from "lucide-react";
 import logoUrl from "@assets/photo_2025-12-21_16-35-07-Photoroom_1766332295101.png";
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/lib/language-context";
@@ -10,6 +10,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
   const [isDark, setIsDark] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showNavItems, setShowNavItems] = useState(false);
   const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
@@ -101,8 +102,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </button>
         </div>
 
+        {/* Navigation Toggle Button (Mobile Only) */}
+        <button
+          onClick={() => setShowNavItems(!showNavItems)}
+          className="lg:hidden w-full px-3 mb-3 py-2 rounded-xl bg-primary/10 dark:bg-primary/20 hover:bg-primary/20 dark:hover:bg-primary/30 text-primary transition-all flex items-center justify-center gap-2"
+        >
+          <span className="text-sm font-bold">الخيارات</span>
+          <ChevronDown size={16} className={`transition-transform ${showNavItems ? 'rotate-180' : ''}`} />
+        </button>
+
         {/* Navigation Items */}
-        <nav className="flex flex-col gap-2 lg:gap-3 w-full px-3 lg:px-4 flex-1">
+        <nav className={`flex flex-col gap-2 lg:gap-3 w-full px-3 lg:px-4 flex-1 transition-all duration-300 overflow-hidden ${
+          showNavItems ? 'max-h-96' : 'lg:max-h-96 max-h-0 lg:block'
+        }`}>
           {navItems.map((item) => {
             const isActive = location === item.href;
             return (
