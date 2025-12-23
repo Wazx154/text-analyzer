@@ -13,7 +13,7 @@ export default function Home() {
   const { language } = useLanguage();
 
   return (
-    <div className="flex flex-col items-center text-center space-y-6 sm:space-y-8 lg:space-y-12 py-4 sm:py-6 lg:py-8 mt-8 lg:mt-0">
+    <div className="flex flex-col items-center text-center space-y-6 sm:space-y-8 lg:space-y-12 py-4 sm:py-6 lg:py-8 mt-8 lg:mt-0 w-full">
       {/* Logo Section */}
       <motion.div
         initial={{ opacity: 0, scale: 0.5, y: 30 }}

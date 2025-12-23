@@ -40,7 +40,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       {/* Mobile Menu Button */}
       <button
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className="lg:hidden fixed top-4 right-4 z-40 p-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-all"
+        className="lg:hidden fixed top-4 right-4 z-50 p-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-all"
       >
         {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
@@ -48,13 +48,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
       {/* Mobile Overlay */}
       {mobileMenuOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black/50 z-30"
+          className="lg:hidden fixed inset-0 bg-black/50 z-40"
           onClick={() => setMobileMenuOpen(false)}
         />
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed lg:relative right-0 top-0 h-screen lg:h-auto w-56 lg:w-full lg:max-w-56 bg-gradient-to-b from-white/90 to-white/70 dark:from-slate-800/95 dark:to-slate-900/95 backdrop-blur-2xl border-l border-white/40 dark:border-slate-700/60 shadow-2xl flex flex-col items-center justify-start gap-0 z-30 lg:z-50 py-6 overflow-y-auto transition-all duration-300 ${
+      <aside className={`fixed lg:relative right-0 top-0 h-screen lg:h-auto w-56 lg:w-full lg:max-w-56 bg-gradient-to-b from-white/90 to-white/70 dark:from-slate-800/95 dark:to-slate-900/95 backdrop-blur-2xl border-l border-white/40 dark:border-slate-700/60 shadow-2xl flex flex-col items-center justify-start gap-0 z-40 lg:z-50 py-6 overflow-y-auto transition-all duration-300 ${
         mobileMenuOpen ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'
       }`}>
         {/* Logo Section */}
@@ -154,9 +154,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 w-full lg:mr-56 flex flex-col min-h-screen">
-        <main className="flex-1 w-full max-w-6xl mx-auto p-3 sm:p-4 md:p-6 lg:p-8 animate-in fade-in zoom-in-95 duration-500">
-          {children}
+      <div className="flex-1 w-full lg:mr-56 flex flex-col min-h-screen relative z-0">
+        <main className="flex-1 w-full p-3 sm:p-4 md:p-6 lg:p-8 animate-in fade-in zoom-in-95 duration-500 overflow-x-hidden">
+          <div className="flex flex-col items-center text-center w-full">
+            {children}
+          </div>
         </main>
 
         <footer className="py-4 sm:py-6 text-center text-muted-foreground text-xs sm:text-sm border-t border-white/20 dark:border-slate-700/60 px-3">
