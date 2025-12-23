@@ -154,14 +154,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 w-full lg:mr-56 flex flex-col min-h-screen relative z-0">
-        <main className="flex-1 w-full p-3 sm:p-4 md:p-6 lg:p-8 animate-in fade-in zoom-in-95 duration-500 overflow-x-hidden">
-          <div className="flex flex-col items-center text-center w-full">
+      <div className="flex-1 w-full lg:mr-56 flex flex-col min-h-screen relative z-0 overflow-y-auto">
+        <main className="flex-1 w-full px-3 sm:px-4 md:px-6 lg:px-8 pt-4 sm:pt-6 md:pt-8 lg:pt-10 pb-20 sm:pb-24 animate-in fade-in zoom-in-95 duration-500 overflow-x-hidden">
+          <div className="flex flex-col items-center text-center w-full max-w-6xl mx-auto">
             {children}
           </div>
         </main>
 
-        <footer className="py-4 sm:py-6 text-center text-muted-foreground text-xs sm:text-sm border-t border-white/20 dark:border-slate-700/60 px-3">
+        <footer className="py-4 sm:py-6 text-center text-muted-foreground text-xs sm:text-sm border-t border-white/20 dark:border-slate-700/60 px-3 mt-auto">
           <p>© 2025 منصة صوت المتدرب - جميع الحقوق محفوظة</p>
         </footer>
       </div>
