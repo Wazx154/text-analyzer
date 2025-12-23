@@ -1,6 +1,15 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Hide Replit dev banner watermark */
+[data-replit-banner],
+[class*="dev-banner"],
+[class*="replit-banner"],
+.replit-dev-banner,
+.dev-banner-root {
+  display: none !important;
+}
+
 @theme inline {
   --color-background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
   --color-foreground: #1a1f36;
