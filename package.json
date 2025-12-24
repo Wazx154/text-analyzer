@@ -1,15 +1,18 @@
 {
-"homepage": "https://wazx154.github.io/text-analyzer",
-  "name": "rest-express",
+  "name": "text-analyzer",
   "version": "1.0.0",
-  "type": "module",
-  "license": "MIT",
+  "private": true,
+  "homepage": "https://wazx154.github.io/text-analyzer",
   "scripts": {
-  "dev": "vite",
-  "build": "tsx script/build.ts",
-  "deploy": "gh-pages -d dist/public"
+    "dev": "vite",
+    "build": "tsx script/build.ts",
+    "deploy": "gh-pages -d dist/public"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.0.0",
+    "vite": "^7.1.12"
+  }
 }
-
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@jridgewell/trace-mapping": "^0.3.25",

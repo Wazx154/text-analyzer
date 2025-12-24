@@ -65,3 +65,9 @@ buildAll().catch((err) => {
   console.error(err);
   process.exit(1);
 });
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "deploy": "gh-pages -d dist"
+}
+
